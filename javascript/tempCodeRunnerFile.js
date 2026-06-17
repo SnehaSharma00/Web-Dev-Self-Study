@@ -1,18 +1,3 @@
-// const getData =()=>{
-//     fetch()
-//     .then(successHandler)
-//     .catch(()=>{
-//         alert("Something went wrong");
-//     });
-// };
-
-// const successHandler = (res)=>{
-//     console.log("response: " , res);
-
-//     res.json().then(renderUI);
-// }
-
-//for tomorrow 13 may
 
 const getData = () => {
 
@@ -63,11 +48,3 @@ const successHandler = (res) => {
     });
 
 };
-const renderUI = (data) => {
-
-    console.log("Inside renderUI");
-
-    console.log(data);
-
-};
-getData();
