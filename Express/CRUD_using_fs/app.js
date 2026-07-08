@@ -25,6 +25,19 @@ app.get("/", (req, res)=>{
 });
 
 
+app.get("api/v1/products", async (req, res)=>{
+
+    const prodArr = await myReadFile("./data.json");
+    res.json({
+        isSuccess: true,
+        message: "GET working",
+        data: {
+            products: prodArr,
+        },
+    });
+
+});
+
 app.post("api/v1/products", async (req, res)=>{
     //console.log(Object.keys(req));
     const data = req.body;
@@ -34,7 +47,7 @@ app.post("api/v1/products", async (req, res)=>{
     console.log("app.post : oldArr : ", oldArr);
     console.log("type pf oldArr ", typeof oldArr);
     oldArr.push(data);
-    await mySaveFIle("./data.json", oldArr);
+    await mySaveFile("./data.json", oldArr);
     res.status(201);
     res.json({
         isSuccess: true,
