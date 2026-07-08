@@ -1,4 +1,7 @@
 const express = require("express");
+const path = require("path");
+const { myReadFile, mySaveFile } = require("./utils/file_helpers");
+const datapath = path.join(__dirname, "data.json");
 
 const app = express();
 
@@ -25,9 +28,9 @@ app.get("/", (req, res)=>{
 });
 
 
-app.get("api/v1/products", async (req, res)=>{
+app.get("/api/v1/products", async (req, res)=>{
 
-    const prodArr = await myReadFile("./data.json");
+    const prodArr = await myReadFile(datapath);
     res.json({
         isSuccess: true,
         message: "GET working",
@@ -38,16 +41,16 @@ app.get("api/v1/products", async (req, res)=>{
 
 });
 
-app.post("api/v1/products", async (req, res)=>{
+app.post("/api/v1/products", async (req, res)=>{
     //console.log(Object.keys(req));
     const data = req.body;
     console.log(data);
 
-    const oldArr = await myReadFile("./data.json"); //myReadFIle returns a promise
+    const oldArr = await myReadFile(datapath); //myReadFIle returns a promise
     console.log("app.post : oldArr : ", oldArr);
     console.log("type pf oldArr ", typeof oldArr);
     oldArr.push(data);
-    await mySaveFile("./data.json", oldArr);
+    await mySaveFile(datapath, oldArr);
     res.status(201);
     res.json({
         isSuccess: true,

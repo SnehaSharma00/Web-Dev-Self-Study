@@ -1,8 +1,8 @@
-const fsPromises = require("fs/Promises");
+const fsPromises = require("fs/promises");
 
 const myReadFile = async (filePath)=>{
     try{
-        const data = await fsPromises.readFIle(filePath, "utf-8");
+        const data = await fsPromises.readFile(filePath, "utf-8");
         //return data; //string in form of js object
         return JSON.parse(data);//JSON string to JS object
     }catch(err){
